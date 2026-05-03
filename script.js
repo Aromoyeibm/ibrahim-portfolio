@@ -186,31 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Project card tilt effect
-document.addEventListener('DOMContentLoaded', () => {
-    const projectCards = document.querySelectorAll('.project-card');
-
-    projectCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
-        });
-    });
-});
-
 // Counter animation for project results
 function animateCounters() {
     const counters = document.querySelectorAll('.result-value');
@@ -329,7 +304,6 @@ function initProjectCarousels() {
         if (slides.length === 0) return;
 
         let currentSlide = 0;
-        let autoSlideInterval;
 
         function showSlide(index) {
             // Pause all videos and remove active class from all slides
@@ -365,38 +339,18 @@ function initProjectCarousels() {
             showSlide(currentSlide);
         }
 
-        // Auto-rotate slides every 4 seconds
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(nextSlide, 4000);
-        }
-
-        function stopAutoSlide() {
-            clearInterval(autoSlideInterval);
-        }
-
-        // Initialize
-        startAutoSlide();
-
-        // Pause auto-rotate on hover
-        card.addEventListener('mouseenter', stopAutoSlide);
-        card.addEventListener('mouseleave', startAutoSlide);
-
-        // Navigation buttons
+        // Navigation buttons (manual only — no auto-rotate so images/videos stay easy to view)
         if (nextBtn) {
             nextBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                stopAutoSlide();
                 nextSlide();
-                startAutoSlide();
             });
         }
 
         if (prevBtn) {
             prevBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                stopAutoSlide();
                 prevSlide();
-                startAutoSlide();
             });
         }
 
@@ -404,9 +358,7 @@ function initProjectCarousels() {
         indicators.forEach((indicator, index) => {
             indicator.addEventListener('click', (e) => {
                 e.stopPropagation();
-                stopAutoSlide();
                 showSlide(index);
-                startAutoSlide();
             });
         });
     });
