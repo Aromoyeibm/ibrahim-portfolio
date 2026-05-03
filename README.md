@@ -18,8 +18,9 @@ A modern, responsive portfolio website for Ibrahim Aromoye, PhD Student in Auton
 4. **Experience**: Research and teaching experience cards
 5. **Projects**: Featured projects with interactive cards
 6. **Publications**: Research publications with status indicators
-7. **Awards**: Honors and recognition
-8. **Contact**: Contact form and professional links
+7. **Conferences**: Conference talks and posters
+8. **Honours & Awards**, **Certifications**, **Memberships**, **Volunteer service**: Listed on the page (no separate nav anchors)
+9. **Contact**: Contact form and professional links
 
 ## Technologies Used
 

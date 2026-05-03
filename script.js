@@ -5,10 +5,12 @@ const navLinks = document.querySelectorAll('.nav-link');
 const contactForm = document.getElementById('contactForm');
 
 // Mobile Navigation Toggle
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-});
+if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    });
+}
 
 // Close mobile menu when clicking on a link
 navLinks.forEach(link => {
@@ -31,36 +33,6 @@ navLinks.forEach(link => {
                 top: offsetTop,
                 behavior: 'smooth'
             });
-        }
-    });
-});
-
-// Navbar background change on scroll
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = 'none';
-    }
-});
-
-// Active navigation link highlighting
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollPos = window.scrollY + 100;
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            navLinks.forEach(link => link.classList.remove('active'));
-            if (navLink) navLink.classList.add('active');
         }
     });
 });
@@ -90,50 +62,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initialize EmailJS
 (function () {
-    emailjs.init("Vob4GqcCU2VH1uxTf"); // You'll need to get this from EmailJS
+    emailjs.init("Vob4GqcCU2VH1uxTf");
 })();
 
 // Contact form handling
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
 
-    // Show loading state
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-    contactForm.classList.add('loading');
+        // Show loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        contactForm.classList.add('loading');
 
-    // Send email using EmailJS
-    emailjs.send('service_5gpygxz', 'template_yqgjjjh', {
-        from_name: data.name,
-        from_email: data.email,
-        subject: data.subject,
-        message: data.message,
-        to_email: 'aromoyeibm@gmail.com'
-    })
-        .then(() => {
-            // Reset form
-            contactForm.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            contactForm.classList.remove('loading');
-
-            // Show success message
-            showNotification('Message sent successfully!', 'success');
+        // Send email using EmailJS
+        emailjs.send('service_5gpygxz', 'template_yqgjjjh', {
+            from_name: data.name,
+            from_email: data.email,
+            subject: data.subject,
+            message: data.message,
+            to_email: 'aromoyeibm@gmail.com'
         })
-        .catch((error) => {
-            // Show error message
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            contactForm.classList.remove('loading');
-            showNotification('Failed to send message. Please try again later.', 'error');
-            console.error('EmailJS Error:', error);
-        });
-});
+            .then(() => {
+                // Reset form
+                contactForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                contactForm.classList.remove('loading');
+
+                // Show success message
+                showNotification('Message sent successfully!', 'success');
+            })
+            .catch((error) => {
+                // Show error message
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                contactForm.classList.remove('loading');
+                showNotification('Failed to send message. Please try again later.', 'error');
+                console.error('EmailJS Error:', error);
+            });
+    });
+}
 
 // Notification system
 function showNotification(message, type = 'info') {
@@ -195,15 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroTitle) {
         const originalText = heroTitle.textContent;
         typeWriter(heroTitle, originalText, 150);
-    }
-});
-
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
     }
 });
 
@@ -467,12 +432,14 @@ function debounce(func, wait) {
 const debouncedScrollHandler = debounce(() => {
     // Navbar background change
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = 'none';
+    if (navbar) {
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = 'none';
+        }
     }
 
     // Active navigation highlighting
@@ -485,9 +452,9 @@ const debouncedScrollHandler = debounce(() => {
         const sectionId = section.getAttribute('id');
         const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
 
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight && navLink) {
             navLinks.forEach(link => link.classList.remove('active'));
-            if (navLink) navLink.classList.add('active');
+            navLink.classList.add('active');
         }
     });
 }, 10);
@@ -498,19 +465,6 @@ window.addEventListener('scroll', debouncedScrollHandler);
 window.addEventListener('error', (e) => {
     console.error('JavaScript error:', e.error);
 });
-
-// Service Worker registration (for PWA features)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
-}
 
 // Export functions for potential external use
 window.PortfolioApp = {
