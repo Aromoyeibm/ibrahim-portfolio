@@ -621,6 +621,121 @@ section {
     gap: 2rem;
 }
 
+/* Robotics Projects Section */
+.robotics-projects {
+    background: var(--bg-secondary);
+}
+
+.robotics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+}
+
+.robotics-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.robotics-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.robotics-media {
+    height: 220px;
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    overflow: hidden;
+}
+
+.robotics-media video,
+.robotics-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.robotics-inline-video {
+    object-fit: cover;
+    background: #0f172a;
+}
+
+
+
+.robotics-video-fallback-wrap {
+    margin: 0.75rem 0 0;
+}
+
+.robotics-video-fallback {
+    font-size: 0.8125rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.robotics-video-fallback:hover {
+    text-decoration: underline;
+}
+
+
+.robotics-media-static img {
+    object-fit: contain;
+    padding: 0.5rem;
+    background: #f1f5f9;
+}
+
+.robotics-media-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 1rem;
+    text-align: center;
+}
+
+.robotics-media-placeholder i {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    opacity: 0.85;
+}
+
+.robotics-content {
+    padding: 1.35rem 1.5rem 1.5rem;
+}
+
+.robotics-content h3 {
+    color: var(--text-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+}
+
+.robotics-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 0.85rem;
+}
+
+.robotics-description:last-of-type {
+    margin-bottom: 0;
+}
+
+.robotics-github {
+    margin-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .project-card {
     background: white;
     border-radius: 12px;
@@ -1541,6 +1656,10 @@ section {
         grid-template-columns: 1fr;
     }
 
+    .robotics-grid {
+        grid-template-columns: 1fr;
+    }
+
     .experience-grid {
         grid-template-columns: 1fr;
     }
@@ -1636,6 +1755,7 @@ textarea:focus {
     }
 
     .project-card,
+    .robotics-card,
     .experience-card,
     .publication-item {
         break-inside: avoid;
