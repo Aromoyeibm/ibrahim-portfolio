@@ -319,7 +319,7 @@ function initProjectCarousels() {
             if (slides[index]) {
                 slides[index].classList.add('active');
                 if (slides[index].tagName === 'VIDEO') {
-                    slides[index].play().catch(e => console.log('Video autoplay prevented'));
+                    slides[index].play().catch(() => {});
                 }
             }
             if (indicators[index]) {
@@ -366,6 +366,34 @@ function initProjectCarousels() {
 
 // Initialize carousels on page load
 document.addEventListener('DOMContentLoaded', initProjectCarousels);
+
+// Robotics: play muted previews when each card scrolls into view (restores reliable autoplay vs off-screen <video>)
+function initRoboticsVideoAutoplay() {
+    const videos = document.querySelectorAll('#robotics-projects .robotics-inline-video');
+    if (videos.length === 0) return;
+
+    const io = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                const v = entry.target;
+                if (!(v instanceof HTMLVideoElement)) return;
+                if (entry.isIntersecting) {
+                    const p = v.play();
+                    if (p && typeof p.catch === 'function') {
+                        p.catch(() => {});
+                    }
+                } else {
+                    v.pause();
+                }
+            });
+        },
+        { rootMargin: '0px 0px -12% 0px', threshold: 0.22 }
+    );
+
+    videos.forEach((v) => io.observe(v));
+}
+
+document.addEventListener('DOMContentLoaded', initRoboticsVideoAutoplay);
 
 // Performance optimization: Debounce scroll events
 function debounce(func, wait) {
