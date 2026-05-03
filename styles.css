@@ -401,6 +401,11 @@ section {
     color: var(--text-primary);
 }
 
+.about-intro strong {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
 .skills-grid {
     display: flex;
     flex-direction: column;
