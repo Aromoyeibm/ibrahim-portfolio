@@ -802,6 +802,44 @@ section {
     line-height: 1.6;
 }
 
+.project-notes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.project-contribution-line,
+.project-goal-line {
+    margin: 0;
+    padding: 0.7rem 0.85rem;
+    border-radius: 0 10px 10px 0;
+    font-size: 1rem;
+}
+
+.project-contribution-line {
+    border-left: 4px solid var(--primary-color);
+    background: rgba(79, 70, 229, 0.08);
+    color: var(--text-primary);
+}
+
+.project-contribution-line .project-notes-label {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.project-goal-line {
+    border-left: 4px solid var(--secondary-color);
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--text-primary);
+}
+
+.project-goal-line .project-notes-label {
+    color: #047857;
+    font-weight: 700;
+}
+
 .project-tech {
     display: flex;
     flex-wrap: wrap;
