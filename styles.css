@@ -673,10 +673,10 @@ section {
     background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
 }
 
-/* Full column width; 2:1 is a bit shorter than 16:9 for the same width */
+/* Full column width (unchanged); only the *height* of the strip is reduced via a wide aspect ratio */
 .robotics-media:not(.robotics-media-static):not(.robotics-media-placeholder) {
-    aspect-ratio: 2 / 1;
-    min-height: 200px;
+    aspect-ratio: 21 / 9;
+    min-height: 180px;
 }
 
 .robotics-media:not(.robotics-media-static) video,
@@ -714,8 +714,8 @@ section {
 
 
 .robotics-media-static {
-    aspect-ratio: 2 / 1;
-    min-height: 180px;
+    aspect-ratio: 21 / 9;
+    min-height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
