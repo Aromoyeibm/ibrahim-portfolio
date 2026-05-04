@@ -670,29 +670,30 @@ section {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
 }
 
-/* Full column width (unchanged); only the *height* of the strip is reduced via a wide aspect ratio */
-.robotics-media:not(.robotics-media-static):not(.robotics-media-placeholder) {
-    aspect-ratio: 21 / 9;
-    min-height: 180px;
+/* Native controls: full frame visible (no cropping), dark letterboxing if needed */
+.robotics-media-video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0f172a;
 }
 
-.robotics-media:not(.robotics-media-static) video,
-.robotics-media:not(.robotics-media-static) > img {
-    position: absolute;
-    left: 0;
-    top: 0;
+.robotics-media-video .robotics-inline-video,
+.robotics-media-video > img {
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+    max-height: min(72vh, 640px);
+    object-fit: contain;
     display: block;
 }
 
 .robotics-inline-video {
-    object-fit: cover;
-    background: #0f172a;
+    object-fit: contain;
+    background: #000;
 }
 
 
@@ -719,6 +720,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
 }
 
 .robotics-media-static img {
