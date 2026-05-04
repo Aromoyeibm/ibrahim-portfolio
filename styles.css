@@ -698,22 +698,6 @@ section {
 
 
 
-.robotics-video-fallback-wrap {
-    margin: 0.75rem 0 0;
-}
-
-.robotics-video-fallback {
-    font-size: 0.8125rem;
-    color: var(--primary-color);
-    font-weight: 500;
-    text-decoration: none;
-}
-
-.robotics-video-fallback:hover {
-    text-decoration: underline;
-}
-
-
 .robotics-media-static {
     aspect-ratio: 21 / 9;
     min-height: 160px;
