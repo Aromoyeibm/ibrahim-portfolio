@@ -626,13 +626,32 @@ section {
     background: var(--bg-secondary);
 }
 
-.robotics-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+#robotics-projects .robotics-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     gap: 2.5rem;
+    width: 100%;
+}
+
+#robotics-projects .robotics-card {
+    width: 100%;
+    max-width: 100%;
+}
+
+.robotics-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2.5rem;
+    width: 100%;
 }
 
 .robotics-card {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     background: white;
     border-radius: 12px;
     overflow: hidden;
@@ -646,13 +665,25 @@ section {
 }
 
 .robotics-media {
-    height: clamp(260px, 42vw, 580px);
-    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
 }
 
-.robotics-media video,
-.robotics-media img {
+/* Full column width: 16:9 frame; height follows container width */
+.robotics-media:not(.robotics-media-static):not(.robotics-media-placeholder) {
+    aspect-ratio: 16 / 9;
+    min-height: 220px;
+}
+
+.robotics-media:not(.robotics-media-static) video,
+.robotics-media:not(.robotics-media-static) > img {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -682,7 +713,18 @@ section {
 }
 
 
+.robotics-media-static {
+    aspect-ratio: 16 / 9;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .robotics-media-static img {
+    position: relative;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     padding: 0.5rem;
     background: #f1f5f9;
@@ -1657,7 +1699,11 @@ section {
     }
 
     .robotics-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2.5rem;
+        width: 100%;
     }
 
     .experience-grid {
