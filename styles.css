@@ -628,8 +628,8 @@ section {
 
 .robotics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
 }
 
 .robotics-card {
@@ -646,7 +646,7 @@ section {
 }
 
 .robotics-media {
-    height: 220px;
+    height: clamp(260px, 42vw, 580px);
     background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
     overflow: hidden;
 }
