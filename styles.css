@@ -673,10 +673,10 @@ section {
     background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
 }
 
-/* Full column width: 16:9 frame; height follows container width */
+/* Full column width; 2:1 is a bit shorter than 16:9 for the same width */
 .robotics-media:not(.robotics-media-static):not(.robotics-media-placeholder) {
-    aspect-ratio: 16 / 9;
-    min-height: 220px;
+    aspect-ratio: 2 / 1;
+    min-height: 200px;
 }
 
 .robotics-media:not(.robotics-media-static) video,
@@ -714,8 +714,8 @@ section {
 
 
 .robotics-media-static {
-    aspect-ratio: 16 / 9;
-    min-height: 200px;
+    aspect-ratio: 2 / 1;
+    min-height: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
